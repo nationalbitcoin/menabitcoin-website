@@ -21,7 +21,7 @@ $(document).ready(function(){
                         for(let i = 0; i < response.transfers.length; i++){
                             let date = new Date(response.transfers[i].date);
                             let adr ='';
-                            let month=['января', 'февраля', 'марта', 'апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+                            // let month=['января', 'февраля', 'марта', 'апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
                             let monthEn=['January', 'February', 'March', 'April','May','June','July','August','September','October','November','December'];
                             if (window.screen.width<=575){
                                 adr=response.transfers[i].address.substr(0,5)+"..."+response.transfers[i].address.substr(-6,6);
@@ -34,13 +34,13 @@ $(document).ready(function(){
                                 htmlString+='<tr class="text-white"><th data-label="#" scope="row">'+ (i+1).toString() 
                                 +'</th><td data-label="RUBTC, Адрес">'+adr+'</td><td data-label="Сумма, RUBTC">'+Math.floor(response.transfers[i].amount*Math.pow(10, -8)* Math.pow(10, 5)) / Math.pow(10, 5)
                                 +'</td><td data-label="Дата">'+date.getDate()+" "+ month[date.getMonth()]+" "+date.getFullYear()
-                                +'</td><td><a class="text-dark-green" href="http://russian-explorer.nationalbitcoin.org/tx/'
+                                +'</td><td><a class="text-dark-green" href="https://mena-explorer.nationalbitcoin.org/tx/'
                                 +response.transfers[i].transaction_id+'" target="_blank">Подробнее</a></td></tr>';
                             }
                             else htmlString+='<tr class="text-white"><th data-label="#" scope="row">'+ (i+1).toString() 
                             +'</th><td data-label="RUBTC address">'+adr+'</td><td data-label="Amount, RUBTC">'+Math.floor(response.transfers[i].amount*Math.pow(10, -8)* Math.pow(10, 5)) / Math.pow(10, 5)
                             +'</td><td data-label="Date">'+date.getDate()+" "+ monthEn[date.getMonth()]+" "+date.getFullYear()
-                            +'</td><td><a class="text-dark-green" href="http://russian-explorer.nationalbitcoin.org/tx/'
+                            +'</td><td><a class="text-dark-green" href="https://mena-explorer.nationalbitcoin.org/tx/'
                             +response.transfers[i].transaction_id+'" target="_blank">See details</a></td></tr>';
                         }
                         $('tbody').html(htmlString);
@@ -50,7 +50,8 @@ $(document).ready(function(){
                         offset += rows
                         if (rows == 1000) {
                             // all is ok, next page...
-                            getData('https://prox.is/backend/api/v1/rubtc/get-transfers-info?limit=1000&offset=' + offset, 'transactions');
+                            getData('https://prox.is/backend/api/v1/rubtc/get-transfers-info?limit=1000&offset=0&coin=MENA' + offset, 'transactions');
+
                         } else {
                             // the end...
                             $('#table').DataTable({
@@ -76,7 +77,9 @@ $(document).ready(function(){
         });
     }
 
-    getData('https://prox.is/backend/api/v1/rubtc/rubtc-award-amount', 'reward');
-    getData('https://prox.is/backend/api/v1/rubtc/rubtc-distribution-participants-with-transfers', 'participants');
-    getData('https://prox.is/backend/api/v1/rubtc/get-transfers-info?limit=1000&offset=0', 'transactions');    
+    getData('https://prox.is/backend/api/v1/rubtc/award-amount', 'reward');
+    getData('https://prox.is/backend/api/v1/rubtc/distribution-participants-with-transfers?coin=MENA', 'participants');
+    getData('https://prox.is/backend/api/v1/rubtc/get-transfers-info?limit=1000&offset=0&coin=MENA', 'transactions');    
 });
+
+
