@@ -32,13 +32,13 @@ $(document).ready(function(){
                             if ($('#dropdown-item').text() == 'РУС'){
 
                                 htmlString+='<tr class="text-white"><th data-label="#" scope="row">'+ (i+1).toString() 
-                                +'</th><td data-label="RUBTC, Адрес">'+adr+'</td><td data-label="Сумма, RUBTC">'+Math.floor(response.transfers[i].amount*Math.pow(10, -8)* Math.pow(10, 5)) / Math.pow(10, 5)
+                                +'</th><td data-label="MENA, Адрес">'+adr+'</td><td data-label="Сумма, MENA">'+Math.floor(response.transfers[i].amount*Math.pow(10, -8)* Math.pow(10, 5)) / Math.pow(10, 5)
                                 +'</td><td data-label="Дата">'+date.getDate()+" "+ month[date.getMonth()]+" "+date.getFullYear()
                                 +'</td><td><a class="text-dark-green" href="https://mena-explorer.nationalbitcoin.org/tx/'
                                 +response.transfers[i].transaction_id+'" target="_blank">Подробнее</a></td></tr>';
                             }
                             else htmlString+='<tr class="text-white"><th data-label="#" scope="row">'+ (i+1).toString() 
-                            +'</th><td data-label="RUBTC address">'+adr+'</td><td data-label="Amount, RUBTC">'+Math.floor(response.transfers[i].amount*Math.pow(10, -8)* Math.pow(10, 5)) / Math.pow(10, 5)
+                            +'</th><td data-label="MENA address">'+adr+'</td><td data-label="Amount, MENA">'+Math.floor(response.transfers[i].amount*Math.pow(10, -8)* Math.pow(10, 5)) / Math.pow(10, 5)
                             +'</td><td data-label="Date">'+date.getDate()+" "+ monthEn[date.getMonth()]+" "+date.getFullYear()
                             +'</td><td><a class="text-dark-green" href="https://mena-explorer.nationalbitcoin.org/tx/'
                             +response.transfers[i].transaction_id+'" target="_blank">See details</a></td></tr>';
